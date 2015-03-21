@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<languages>
+	<!-- English -->
+	<language name="en_UK" >
+		<string key="Loading..." value="Loading..." />
+	</language>
+	
+	<!-- Spanish -->
+	<language name="es_ES" >
+		<string key="Loading..." value="Cargando..." />
+	</language>
+</languages>

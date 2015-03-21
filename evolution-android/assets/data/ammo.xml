@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sprite name="data/ammo.png"
+		frameDuration="0.03333"
+		rows="1"
+		columns="1" >
+	
+	<animation name="idle" mode="loop" frames="0" />
+</sprite>

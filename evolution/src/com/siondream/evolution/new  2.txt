@@ -1,0 +1,92 @@
+public void createPhysics(Map map, String layerName, World world, float units) {
+	MapLayer layer = map.getLayers().getLayer(layerName);
+	
+	if (layer == null) {
+		return;
+	}
+	
+	MapObjects objects = layer.getObjects();
+	Iterator<MapObject> objectIt = objects.iterator();
+		
+	while(objectIt.hasNext()) {
+		MapObject object = objectIt.next();
+		
+		if (object instanceof TextureMapObject){
+			continue;
+		}
+		
+		Shape shape;
+		
+		if (object instanceof RectangleMapObject) {
+			RectangleMapObject rectangleObject = (RectangleMapObject)object;
+			Rectangle rectangle = rectangleObject.getRectangle();
+			PolygonShape polygon = new PolygonShape();
+			polygon.setAsBox(rectangle.width * 0.5f * units,
+							 rectangle.height * 0.5f * units,
+							 new Vector2((rectangle.x + rectangle.width * 0.5f) * units, (rectangle.y - rectangle.height * 0.5f ) * units),
+							 0.0f);
+			shape = polygon;
+		}
+		else if (object instanceof PolygonMapObject) {
+			PolygonMapObject polygonObject = (PolygonMapObject)object;
+			PolygonShape polygon = new PolygonShape();
+			float[] vertices = polygonObject.getPolygon().getVertices();
+			float[] worldVertices = new float[vertices.length];
+			
+			for (int i = 0; i < vertices.length; ++i) { 
+				worldVertices[i] = vertices[i] * units;
+			}
+			
+			polygon.set(worldVertices);
+			shape = polygon;
+		}
+		else if (object instanceof PolylineMapObject) {
+			PolylineMapObject polylineObject = (PolylineMapObject)object;
+			float[] vertices = polylineObject.getPolygon().getVertices();
+			Vector2[] worldVertices = new Vector2[vertices.length / 2];
+			
+			for (int i = 0; i < vertices.length / 2; ++i) {
+				worldVertices[i] = new Vector2();
+				worldVertices[i].x = vertices[i * 2] * units;
+				worldVertices[i].y = vertices[i * 2 + 1] * units;
+			}
+			
+			ChainShape chain = new ChainShape(); 
+			chain.createChain(worldVertices);
+			shape = chain;
+		}
+		else if (object instanceof CircleMapObject) {
+			CircleMapObject circleObject = (CircleMapObject)object;
+			
+			Circle circle = circleObject.getCircle();
+			CircleShape circleShape = new CircleShape();
+			circleShape.setRadius(circle.radius * units);
+			circleShape.setPosition(new Vector2(circle.x * units, circle.y * units));
+			shape = circleShape;
+		}
+		else {
+			continue;
+		}
+		
+		
+		FixtureDef fixtureDef = new FixtureDef();
+		
+		if (fixtureDef == null) {
+			m_logger.error("material does not exist " + material);
+			continue;
+		}
+		
+		fixtureDef.shape = shape;
+		
+		BodyDef bodyDef = new BodyDef();
+		bodyDef.type = BodyDef.BodyType.StaticBody;
+		
+		Body body = world.createBody(bodyDef);
+		body.createFixture(fixtureDef);
+		
+		m_bodies.add(body);
+		
+		fixtureDef.shape = null;
+		shape.dispose();
+	}
+}

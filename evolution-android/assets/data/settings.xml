@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+	<!-- Screen size  -->
+	<int key="virtualWidth" value="1280" />
+	<int key="virtualHeight" value="720" />
+	<float key="aspectRatio" value="1.7777" />
+	
+	<!--  Gesture detection -->
+	<int key="halfTapSquareSize" value="20" />
+	<float key="tapCountInterval" value="0.4" />
+	<float key="longPressDuration" value="0.2" />
+	<float key="halfTapSquareSize" value="0.15" />
+	
+	<!--  Tiled baking block size (can be set on a per map basis) -->
+	<int key="blockWidth" value="1300" />
+	<int key="blockHeight" value="800" />
+	
+	<!--  Box 2D Physics -->
+	<vector key="gravity" x="0.0" y="12.0" z="0.0" />
+	<int key="velocityIterations" value="12" />
+	<int key="positionIterations" value="6" />
+	<bool key="drawBodies" value="true" />
+	<bool key="drawJoints" value="false" />
+	<bool key="drawAABBs" value="false" />
+	<bool key="drawInactiveBodies" value="false" />
+	<float key="ppm" value="30.0" />
+	
+	<!--  Caveman  -->
+	<float key="cavemanMaxSpeed" value="8.0" />
+	<float key="cavemanWalkImpulse" value="4.0" />
+	<float key="cavemanJumpImpulse" value="40.0" />
+	<vector key="cavemanThrowOffset" x="2.0" y="-2.0" z="0.0" />
+	<vector key="cavemanThrowLinear" x="0.7" y="-0.8" z="0.0" />
+	<float key="cavemanThrowAngular" value="0.5" />
+	<int key="cavemanAmmo" value="0" />
+	
+	<!-- Item  -->
+	<float key="itemLifeTime" value="3.0" />
+	
+	<!--  StateGame  -->
+	<float key="titleTime" value="1.5" />
+	<vector key="ammoHUDPos" x="15.0" y="15.0" z="5.0" />
+	<vector key="ammoHUDTextPos" x="100.0" y="30.0" z="5.0"  />
+	
+	
+	<!--  Camera -->
+	<float key="cameraMaxDistance" value="25.0" />
+	<float key="cameraOffsetY" value="-4.0" />
+	<float key="cameraTweenTime" value="0.2" />
+	
+	<!--  Enemy -->
+	<float key="enemyMaxSpeedX" value="6.0" />
+	<float key="enemyImpulseX" value="5.0" />
+	<float key="enemyChangeMinTime" value="0.5" />
+</settings>
